@@ -1,12 +1,13 @@
-
 public abstract class OAHashTable implements IHashTable {
 	
 	private HashTableElement [] table;
+	protected int m;
 	//hash table element to mark deleted element cell:
 	private static final HashTableElement deleted = new HashTableElement(-1, -1); 
 	
 	public OAHashTable(int m) {
 		this.table = new HashTableElement[m];
+		this.m = m;
 	}
 	
 	
