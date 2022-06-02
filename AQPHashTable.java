@@ -1,15 +1,13 @@
-import java.util.Random;
-
 public class AQPHashTable extends OAHashTable {
+	ModHash hash_func;
 
 	public AQPHashTable(int m, long p) {
 		super(m);
-		// TODO Complete hash table constructor.
+		hash_func = ModHash.GetFunc(m, p);
 	}
 	
 	@Override
 	public int Hash(long x, int i) {
-		// TODO implement hash function
-		return 0;
+		return (hash_func.Hash(x) + (int) Math.pow(-1, i)*i*i) % m;
 	}
 }
