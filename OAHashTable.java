@@ -12,7 +12,7 @@ public abstract class OAHashTable implements IHashTable {
 	
 	@Override
 	public HashTableElement Find(long key) {
-		for (int i=0; i<table.length; i++) { //search series:
+		for (int i=0; i<table.length; i++) { //probing series:
 			int j = Hash(key, i); //the hash result index
 			if (table[j] == null) { //empty cell
 				return null; //stop searching
@@ -27,7 +27,7 @@ public abstract class OAHashTable implements IHashTable {
 	@Override
 	public void Insert(HashTableElement hte) throws TableIsFullException,KeyAlreadyExistsException {
 		long key = hte.GetKey();
-		for (int i=0; i<table.length; i++) { //search series:
+		for (int i=0; i<table.length; i++) { //probing series:
 			int j = Hash(key, i); //the hash result index
 			if ((table[j] == null) || (table[j].GetKey() == -1)) { //empty or deleted
 				table[j] = hte;
@@ -42,7 +42,7 @@ public abstract class OAHashTable implements IHashTable {
 	
 	@Override
 	public void Delete(long key) throws KeyDoesntExistException {
-		for (int i=0; i<table.length; i++) { //search series:
+		for (int i=0; i<table.length; i++) { //probing series:
 			int j = Hash(key, i); //the hash result index
 			if (table[j] == null) { //empty cell
 				throw new KeyDoesntExistException(key);
