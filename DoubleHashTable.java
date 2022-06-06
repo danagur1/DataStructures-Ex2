@@ -9,6 +9,7 @@ public class DoubleHashTable extends OAHashTable {
 	
 	@Override
 	public int Hash(long x, int i) {
-		return (hash_func1.Hash(x) + i * hash_func2.Hash(x)) % m;
+		int result = (hash_func1.Hash(x) + i * hash_func2.Hash(x)) % m;
+		return (result<0) ? (result+m) : result;
 	}
 }
