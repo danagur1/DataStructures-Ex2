@@ -32,11 +32,15 @@ public abstract class OAHashTable implements IHashTable {
 		Boolean idx_found = false;
 		for (int i=0; i<m; i++) { //probing series:
 			int j = Hash(key, i); //the hash result index
-			if ((!idx_found) && ((table[j] == null) || (table[j].GetKey() == -1))) { //empty or deleted
+			if (table[j] == null) {
+				table[j] = hte;
+				return;
+			}
+			else if ((!idx_found) && (table[j].GetKey() == -1)) { //empty or deleted
 				idx_found = true;
 				idx = j;
 			}
-			else if ((table[j] != null) && (table[j].GetKey() == key)) { //key exists in table
+			else if (table[j].GetKey() == key) { //key exists in table
 				throw new KeyAlreadyExistsException(hte);
 			}
 		}
