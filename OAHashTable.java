@@ -33,7 +33,12 @@ public abstract class OAHashTable implements IHashTable {
 		for (int i=0; i<m; i++) { //probing series:
 			int j = Hash(key, i); //the hash result index
 			if (table[j] == null) {
-				table[j] = hte;
+				if(idx_found){
+					table[idx] = hte;
+				}
+				else{
+					table[j] = hte;
+				}
 				return;
 			}
 			else if ((!idx_found) && (table[j].GetKey() == -1)) { //empty or deleted
